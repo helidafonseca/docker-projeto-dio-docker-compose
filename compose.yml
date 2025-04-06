@@ -4,6 +4,21 @@ services:
     image: httpd:latest
     container_name: my-apache-app
     ports:
-    - '80:80'
+      - '80:80'
     volumes:
-    - ./website:/usr/local/apache2/htdocs
+      - ./website:/usr/local/apache2/htdocs
+      - ./apache-conf/httpd.conf:/usr/local/apache2/conf/httpd.conf
+    networks:
+      - minha-rede
+
+  kotlin-backend:
+    build: ./kotlin-backend
+    container_name: kotlin-backend
+    ports:
+      - '8080:8080'
+    networks:
+      - minha-rede
+
+networks:
+  minha-rede:
+    driver: bridge

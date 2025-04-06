@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello from Apache</title>
+</head>
+<body>
+    <h1>Kotlin Response:</h1>
+    <div id="resposta"></div>
+
+    <script>
+        fetch('http://localhost:8080/api/hello')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('resposta').innerText = data;
+            })
+            .catch(error => {
+                console.error('Erro ao buscar do backend:', error);
+                document.getElementById('resposta').innerText = 'Erro ao carregar resposta.';
+            });
+    </script>
+</body>
+</html>
